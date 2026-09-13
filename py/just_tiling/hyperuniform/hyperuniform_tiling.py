@@ -1,3 +1,29 @@
+"""
+This program read in a galaxy catalog, and arrange tiles according to the galaxy number density.
+
+main steps:
+1. read galaxy catalogue (ra,dec)
+  > input galaxy catalog file
+2. make mask if not provided
+  > output mask file
+  > output galaxy counts map
+3. define cluster region
+  > output cluster region map
+4. set tile mass map, which is proportional to 1 / galaxy counts per pixel
+  > output tile mass map
+5. downsample galaxy as tiles, and set tile mass according to the tile mass map
+  > output tile initial distribution (ra, dec)
+  > output tile mass, color-coding (normalized tile mass array)
+6. evolve with anti-gravity alogirhtm
+  > output tile distribution in iterations
+7. end
+  > output tile final distribution
+
+run
+    python hyperuniform_tiling.py
+"""
+
+
 import numpy as np
 from astropy.io import fits
 import healpy as hp
