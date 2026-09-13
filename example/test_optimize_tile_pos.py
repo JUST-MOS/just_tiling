@@ -172,19 +172,19 @@ def main():
             "OPT_ELAPSED_S": np.asarray(opt_elapsed, dtype=np.float64),
         }
     )
-    tiles_results.write(odir + f"/tiles_optimized_pass1_2.fits", overwrite=True)
+    ##tiles_results.write(odir + f"/tiles_optimized_pass1_2.fits", overwrite=True)
 
     fig, ax = plt.subplots(dpi=120)
     
-    ax.plot(gal_par_cat["RA"][cluster_mask], gal_par_cat["DEC"][cluster_mask], ",", color="gray", alpha=1.0)
-    ax.plot(gal_par_cat["RA"][~cluster_mask], gal_par_cat["DEC"][~cluster_mask], ",", color="gray", alpha=0.5)
+    ax.plot(gal_par_cat["RA"][cluster_mask], gal_par_cat["DEC"][cluster_mask], ",", color="k")
+    ax.plot(gal_par_cat["RA"][~cluster_mask], gal_par_cat["DEC"][~cluster_mask], ",", color="gray")
     ax.plot(tiles_results["RA"], tiles_results["DEC"], "o", label="default")
     ax.plot(tiles_results["RA_NEW"], tiles_results["DEC_NEW"], "x", label="optimized")
     ax.set_xlabel("RA [deg]", fontsize=14)
     ax.set_ylabel("DEC [deg]", fontsize=14)
     ax.legend(fontsize=14)
     plt.tight_layout()
-    plt.savefig(odir + "/optimized_tiles.png")
+    plt.show()
     
 
     
