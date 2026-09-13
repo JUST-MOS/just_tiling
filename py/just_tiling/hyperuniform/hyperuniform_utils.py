@@ -3,6 +3,7 @@ This file contains the functions and utilities used by making hyperuniform tile 
 
 > change_mask_nside
     input a mask with nside1, output mask with nside2
+
 > move_on_sphere
     implement (dtheta, dphi) on (theta, phi)
     

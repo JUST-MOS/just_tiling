@@ -1,3 +1,24 @@
+"""
+This file contains functions for making plots
+
+> plot_gal_den_map
+   > input galaxy counts array and make plot
+
+> plot_tile_distribution
+   > input ra, dec of tiles, and plot tile position over a background map
+
+> plot_color_tile_distribution
+   > input ra, dec and color-coding of tiles, and plot tile over a background map
+
+> draw_sphercial_circles_advance
+   > function to draw a lot of circles, given the coordinates and circle radius 
+
+> plot_tile_circles
+   > input ra, dec of tiles, and draw cirlces over a background map
+
+"""
+
+
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
