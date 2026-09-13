@@ -1,9 +1,8 @@
 # for hyperuniform tiling algorithm
 numpy>=1.26.4
 matplotlib>=3.3.5
-pillow<11
-healpy>=1.16.5,<1.20
-astropy>=5.2.2,<8.0
+healpy>=1.16.5
+astropy>=5.2.2
 
 # additional dependencies for minimize updf algorithm
 scipy>=1.11.4

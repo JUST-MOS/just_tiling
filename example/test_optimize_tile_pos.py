@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
 
-from optimize_tile_pos import process_one_pixid
+from just_tiling.minimize_updf.optimize_tile_pos import process_one_pixid
 
 
 def main():

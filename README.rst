@@ -87,13 +87,14 @@ Running the minimize updf example
 =================================
 
 The tile-position optimization example is located at
-``py/just_tiling/minimize_updf/test_optimize_tile_pos.py``. It expects the
-demo input file ``input/demo_4x4.npz`` in the same directory, so run it from
-``py/just_tiling/minimize_updf/``:
+``example/test_optimize_tile_pos.py``. It imports ``process_one_pixid`` from
+the installed ``just_tiling.minimize_updf.optimize_tile_pos`` package and
+expects the demo input file ``example/input/demo_4x4.npz``, so run it from
+``example/``:
 
 .. code-block:: bash
 
-    cd py/just_tiling/minimize_updf
+    cd example
     python test_optimize_tile_pos.py
 
 By default the script writes its outputs to ``./output/``. You can override
