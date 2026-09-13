@@ -1,3 +1,14 @@
+"""
+This file contains the functions and utilities used by making hyperuniform tile distribution.
+
+> change_mask_nside
+    input a mask with nside1, output mask with nside2
+> move_on_sphere
+    implement (dtheta, dphi) on (theta, phi)
+    
+"""
+
+
 import numpy as np
 import healpy as hp
 
@@ -9,25 +20,27 @@ def change_mask_nside(
     order_out="RING",
 ):
     """
-    改变 HEALPix mask 的分辨率。
+    change the resolution of HEALpix mask.
+    if nside_out > nside_in (increasing the resolution), all pixels in masked region is set as mask (power=0 in hp.ud_grad)
+    if nside_out < nside_in (decreasing the ersolution). a new pixel is set as mask according to the threshold
 
-    参数
+    parameters
     ----
     mask_in : bool array
-        True 表示禁止区域。
+        True = the areas in mask (not allowed, unobserved)
     nside_out : int
-        目标 HEALPix nside。
+        target HEALPix nside。
     threshold : float
-        新像素内 mask 覆盖比例达到多少时，将其标记为 mask。
+        the fraction threshold for treating new pixel as mask
 
-        threshold=0.0：
-            只要包含任何 mask 子像素，就设为 mask，最保守。
+        threshold=0.0:
+            if new pixel contain any masked pixel, set as mask (conservative)
 
-        threshold=0.5：
-            超过一半面积被 mask 才设为 mask。
+        threshold=0.5:
+            if new pixel contain over half of masked pixel, set as mask
 
-        threshold接近1：
-            几乎完全被 mask 才设为 mask。
+        threshold~1:
+            set as mask only if almost all the pixels are masked
     """
     mask_in = np.asarray(mask_in, dtype=bool)
 
