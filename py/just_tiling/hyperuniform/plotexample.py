@@ -6,10 +6,11 @@ import healpy as hp
 
 
 # plot galaxy count map
-if False:
+if True:
     from hyperuniform_plots import plot_gal_den_map
 
-    counts_map_plot = np.load('./testdata/gal_counts_map.npz')
+    data = np.load('./testdata/gal_counts_map.npz')
+    counts_map_plot = data[data.files[0]]
     plot_gal_den_map(
         counts_map_plot,
         savefile = "./testplot/galaxy_counts_map.pdf",
@@ -43,7 +44,7 @@ if True:
 
 
 # plot tile distribution with cluster region
-if False:
+if True:
     from hyperuniform_plots import plot_tile_distribution
 
     # read in cluster region
@@ -64,10 +65,11 @@ if False:
 
 
 # plot tile distribution with galaxy count map
-if False:
+if True:
     from hyperuniform_plots import plot_tile_distribution
 
-    counts_map_plot = np.load('./testdata/gal_counts_map.npz')
+    data = np.load('./testdata/gal_counts_map.npz')
+    counts_map_plot = data[data.files[0]]
 
     tile_coord = np.load('./testdata/hyper_final_tile.npz')
     ra = tile_coord["tile_coord"][:,0]
@@ -83,7 +85,7 @@ if False:
 
 
 # plot tile distribution with color
-if False:
+if True:
     from hyperuniform_plots import plot_color_tile_distribution
     
     data = np.load('./testdata/mask_from_gal.npz')
