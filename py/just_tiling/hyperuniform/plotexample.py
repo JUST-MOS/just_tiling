@@ -4,9 +4,16 @@ import matplotlib.ticker as ticker
 import numpy as np
 import healpy as hp
 
+plot_gal_den_flag = True
+plot_tile_flag = True
+plot_tile_with_cluster_region_flag = True
+plot_tile_on_galaxy_map_flag = True
+plot_color_tile_flag = True
+plot_tile_circles_on_cluster_map_flag = True
+
 
 # plot galaxy count map
-if True:
+if plot_gal_den_flag:
     from hyperuniform_plots import plot_gal_den_map
 
     data = np.load('./testdata/gal_counts_map.npz')
@@ -19,7 +26,7 @@ if True:
 
 
 # plot tile distribution
-if True:
+if plot_tile_flag:
     from hyperuniform_plots import plot_tile_distribution
 
     # make a zero-valued trivial map with mask
@@ -44,7 +51,7 @@ if True:
 
 
 # plot tile distribution with cluster region
-if True:
+if plot_tile_with_cluster_region_flag:
     from hyperuniform_plots import plot_tile_distribution
 
     # read in cluster region
@@ -65,7 +72,7 @@ if True:
 
 
 # plot tile distribution with galaxy count map
-if True:
+if plot_tile_on_galaxy_map_flag:
     from hyperuniform_plots import plot_tile_distribution
 
     data = np.load('./testdata/gal_counts_map.npz')
@@ -85,7 +92,7 @@ if True:
 
 
 # plot tile distribution with color
-if True:
+if plot_color_tile_flag:
     from hyperuniform_plots import plot_color_tile_distribution
     
     data = np.load('./testdata/mask_from_gal.npz')
@@ -108,7 +115,7 @@ if True:
 
 
 # plot tile circles with cluster region
-if True:
+if plot_tile_circles_on_cluster_map_flag:
     from hyperuniform_plots import plot_tile_circles
 
     # read in cluster region
