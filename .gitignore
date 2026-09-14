@@ -1,5 +1,7 @@
 
 
+# large outputs
+example/output
 
 # hyperuniform_tiling test data
 py/just_tiling/hyperuniform/testdata/*
