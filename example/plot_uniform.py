@@ -11,40 +11,42 @@ plot_tile_on_galaxy_map_flag = True
 plot_color_tile_flag = True
 plot_tile_circles_on_cluster_map_flag = True
 
+datadir = "./output/"
+plotdir = "./output/"
 
 # plot galaxy count map
 if plot_gal_den_flag:
-    from hyperuniform_plots import plot_gal_den_map
+    from just_tiling.hyperuniform.hyperuniform_plots import plot_gal_den_map
 
-    data = np.load('./testdata/gal_counts_map.npz')
+    data = np.load(datadir + 'gal_counts_map.npz')
     counts_map_plot = data[data.files[0]]
     plot_gal_den_map(
         counts_map_plot,
-        savefile = "./testplot/galaxy_counts_map.pdf",
+        savefile = plotdir + "galaxy_counts_map.pdf",
         )
 
 
 
 # plot tile distribution
 if plot_tile_flag:
-    from hyperuniform_plots import plot_tile_distribution
+    from just_tiling.hyperuniform.hyperuniform_plots import plot_tile_distribution
 
     # make a zero-valued trivial map with mask
-    data = np.load('./testdata/mask_from_gal.npz')
+    data = np.load(datadir + 'mask_from_gal.npz')
     mask = data[data.files[0]]
     npix = len(mask)
     trivial_map = np.zeros(npix)
     trivial_map[mask] = hp.UNSEEN
     trivial_map[~mask] = 0.
 
-    tile_coord = np.load('./testdata/hyper_final_tile.npz')
+    tile_coord = np.load(datadir + 'hyper_final_tile.npz')
     ra = tile_coord["tile_coord"][:,0]
     dec = tile_coord["tile_coord"][:,1]
 
     plot_tile_distribution(
         trivial_map, ra, dec, 
         minv=0, maxv=1, bkgtext="inside",
-        savefile = "./testplot/tile_distribution_with_background.pdf",
+        savefile = plotdir + "tile_distribution_with_background.pdf",
         )
     #use the most left edge of cmap = "Oranges"
 
@@ -52,20 +54,20 @@ if plot_tile_flag:
 
 # plot tile distribution with cluster region
 if plot_tile_with_cluster_region_flag:
-    from hyperuniform_plots import plot_tile_distribution
+    from just_tiling.hyperuniform.hyperuniform_plots import plot_tile_distribution
 
     # read in cluster region
-    data = np.load('./testdata/cluster_region_map.npz')
+    data = np.load(datadir + 'cluster_region_map.npz')
     cluster_region = data[data.files[0]]
 
-    tile_coord = np.load('./testdata/hyper_final_tile.npz')
+    tile_coord = np.load(datadir + 'hyper_final_tile.npz')
     ra = tile_coord["tile_coord"][:,0]
     dec = tile_coord["tile_coord"][:,1]
 
     plot_tile_distribution(
         cluster_region, ra, dec, 
         minv=0, maxv=10,
-        savefile="./testplot/tile_with_cluster_region.pdf",
+        savefile = plotdir + "tile_with_cluster_region.pdf",
         )
     # valid region = 0, cluster region = 2, set edges of cmap as 0, 10
 
@@ -73,12 +75,12 @@ if plot_tile_with_cluster_region_flag:
 
 # plot tile distribution with galaxy count map
 if plot_tile_on_galaxy_map_flag:
-    from hyperuniform_plots import plot_tile_distribution
+    from just_tiling.hyperuniform.hyperuniform_plots import plot_tile_distribution
 
-    data = np.load('./testdata/gal_counts_map.npz')
+    data = np.load(datadir + 'gal_counts_map.npz')
     counts_map_plot = data[data.files[0]]
 
-    tile_coord = np.load('./testdata/hyper_final_tile.npz')
+    tile_coord = np.load(datadir + 'hyper_final_tile.npz')
     ra = tile_coord["tile_coord"][:,0]
     dec = tile_coord["tile_coord"][:,1]
 
@@ -87,49 +89,49 @@ if plot_tile_on_galaxy_map_flag:
         cmap="rainbow",
         bkgcolor = "orange",
         bkgtext = "gal_den",
-        savefile = "./testplot/tile_with_gal_den.pdf",
+        savefile = plotdir + "tile_with_gal_den.pdf",
         )
 
 
 # plot tile distribution with color
 if plot_color_tile_flag:
-    from hyperuniform_plots import plot_color_tile_distribution
+    from just_tiling.hyperuniform.hyperuniform_plots import plot_color_tile_distribution
     
-    data = np.load('./testdata/mask_from_gal.npz')
+    data = np.load(datadir + 'mask_from_gal.npz')
     mask = data[data.files[0]]
     npix = len(mask)
     trivial_map = np.zeros(npix)
     trivial_map[mask] = hp.UNSEEN
     trivial_map[~mask] = 0.
 
-    tile_coord = np.load('./testdata/hyper_final_tile.npz')
+    tile_coord = np.load(datadir + 'hyper_final_tile.npz')
     ra = tile_coord["tile_coord"][:,0]
     dec = tile_coord["tile_coord"][:,1]
-    data = np.load('./testdata/hyper_tile_colors.npz')
+    data = np.load(datadir + 'hyper_tile_colors.npz')
     colors = data[data.files[0]]
 
     plot_color_tile_distribution(
         trivial_map, ra, dec, colors,
-        savefile = "./testplot/tile_distribution_with_colors.pdf",
+        savefile = plotdir + "tile_distribution_with_colors.pdf",
         )
 
 
 # plot tile circles with cluster region
 if plot_tile_circles_on_cluster_map_flag:
-    from hyperuniform_plots import plot_tile_circles
+    from just_tiling.hyperuniform.hyperuniform_plots import plot_tile_circles
 
     # read in cluster region
-    data = np.load('./testdata/cluster_region_map.npz')
+    data = np.load(datadir + 'cluster_region_map.npz')
     cluster_region = data[data.files[0]]
 
-    tile_coord = np.load('./testdata/hyper_final_tile.npz')
+    tile_coord = np.load(datadir + 'hyper_final_tile.npz')
     ra = tile_coord["tile_coord"][:,0]
     dec = tile_coord["tile_coord"][:,1]
 
     plot_tile_circles(
         cluster_region, ra, dec,
         minv=0, maxv=10,
-        savefile = "./testplot/tile_circles_with_background.pdf",
+        savefile = plotdir + "tile_circles_with_background.pdf",
         )
     # valid region = 0, cluster region = 2, set edges of cmap as 0, 10
    
