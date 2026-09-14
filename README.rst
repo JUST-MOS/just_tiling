@@ -19,7 +19,7 @@ For the fastest setup, install directly from GitHub:
 
 .. code-block:: bash
 
-    pip install git+https://github.com/zjdingastro/just_tiling.git
+    pip install git+https://github.com/JUST-MOS/just_tiling.git
 
 Install from source
 -------------------
@@ -30,7 +30,7 @@ editable mode:
 
 .. code-block:: bash
 
-    git clone https://github.com/zjdingastro/just_tiling.git
+    git clone https://github.com/JUST-MOS/just_tiling.git
     cd just_tiling
     pip install -e .
 
@@ -67,20 +67,19 @@ Running the hyperuniform tiling example
 =======================================
 
 The hyperuniform tiling example is located at
-``py/just_tiling/hyperuniform/hyperuniform_tiling.py``. It uses hardcoded
-paths to read from and write to ``./testdata/`` in the same directory, so run
-it from ``py/just_tiling/hyperuniform/``:
+``example/test_hyperuniform_tiling.py``. 
 
 .. code-block:: bash
 
-    cd py/just_tiling/hyperuniform
-    python hyperuniform_tiling.py
+    cd example
+    python test_hyperuniform_tiling.py
 
-The script reads the galaxy catalog
-``testdata/lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits`` and
-writes the initial, intermediate, and final tile distributions as ``.npy``
-files in ``testdata/``. Edit the ``catalogfile`` and ``outputdir`` variables
-at the top of the script to use different input or output paths.
+The script calls ``py/just_tiling/hyperuniform_tiling.py``, reads the galaxy catalog
+``/home/Survey/JUST/mini/junyumock/lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits`` on GRAVITY and
+writes the initial, intermediate, and final tile distributions as ``.npz``
+files in ``./output``. Overwrite the default by ``-i`` or ``--input-catalog`` and ``-o`` or ``--output-dir`` plus your input file and your output directory.
+
+Plots can be made by ``python plot_uniform.py`` in the same directory. It reads the tile files in ``./output`` and output the plots in the same directory in default. Use ``-i`` or ``--input-dir`` and ``-o`` or ``--output-dir`` to overwrite.
 
 
 Running the minimize updf example

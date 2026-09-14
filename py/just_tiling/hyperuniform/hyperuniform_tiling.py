@@ -1,3 +1,4 @@
+from pathlib import Path
 
 def hyperuniform_tiling(
     catalogfile,
@@ -37,9 +38,6 @@ def hyperuniform_tiling(
     import healpy as hp
     from  just_tiling.hyperuniform.hyperuniform_utils import change_mask_nside, move_on_sphere
     
-    #catalogfile = './testdata/lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits'
-    #outputdir = './testdata/'
-    
     write_cluster_region_map = True
     write_gal_counts_map = True
     write_tile_mass_map = True
@@ -47,6 +45,11 @@ def hyperuniform_tiling(
     write_tile_steps = False
     write_tile_final = True
     
+    catalogfile = Path(catalogfile)
+    outputdir = Path(outputdir)
+
+    outputdir.mkdir(parents=True, exist_ok=True)
+
     ### read galaxy catalogue
     
     print(f"reading catalog file {catalogfile} ...")
@@ -91,14 +94,14 @@ def hyperuniform_tiling(
     print(f"number of mask pixel: {numbermask:d}")
     print(f"number of visible pixel: {numbervisible:d}")
     
-    np.savez_compressed(outputdir+'mask_from_gal.npz', mask)
+    np.savez_compressed(outputdir / 'mask_from_gal.npz', mask)
     
     if write_gal_counts_map:
         counts_map_plot = counts_map.astype(np.float32)
         counts_map_plot[mask] = hp.UNSEEN
     
         print(f"writing galaxy counts map file")
-        np.savez_compressed(outputdir+'gal_counts_map.npz', counts_map_plot)
+        np.savez_compressed(outputdir / 'gal_counts_map.npz', counts_map_plot)
     
     print("=="*20)
     
@@ -130,7 +133,7 @@ def hyperuniform_tiling(
     
     if write_cluster_region_map:
         print(f"writing cluster_region_map file")
-        np.savez_compressed(outputdir+f"cluster_region_map.npz", cluster_map)
+        np.savez_compressed(outputdir / f"cluster_region_map.npz", cluster_map)
     
     print("=="*20)
     
@@ -148,7 +151,7 @@ def hyperuniform_tiling(
     
     if write_tile_mass_map:
         print(f"writing tile mass map file")
-        np.savez_compressed(outputdir+f"gal_tile_mass_map.npz", massmap)
+        np.savez_compressed(outputdir / f"gal_tile_mass_map.npz", massmap)
     
     print(f"=="*20)
     
@@ -206,15 +209,15 @@ def hyperuniform_tiling(
     if write_tile_initial:
         print(f"writing initial tile distribution files")
         tile_coord = np.column_stack((ra_mask[lucky], dec_mask[lucky]))
-        np.savez_compressed(outputdir+f"hyper_initial_tile.npz",tile_coord=tile_coord)  # shape (n_tiles, 2): RA, Dec [deg]
+        np.savez_compressed(outputdir / f"hyper_initial_tile.npz",tile_coord=tile_coord)  # shape (n_tiles, 2): RA, Dec [deg]
     
     # set the color for plotting
     colors=(mass2-massmin)/(massmax-massmin)
     
     if write_tile_initial or write_tile_final or write_tile_steps :
         print(f"writing tile color coding file")
-        np.savez_compressed(outputdir+f"hyper_tile_colors.npz", color=colors)
-        np.savez_compressed(outputdir+f"hyper_tile_mass.npz", mass=mass2)
+        np.savez_compressed(outputdir / f"hyper_tile_colors.npz", color=colors)
+        np.savez_compressed(outputdir / f"hyper_tile_mass.npz", mass=mass2)
     
     print("=="*20)
     
@@ -415,7 +418,7 @@ def hyperuniform_tiling(
     
             print(f"writing tile distribution files for iteration {istep+1:02d}")
             tile_coord = np.column_stack((ratmp, dectmp))
-            np.savez_compressed(outputdir+f"hyper_step{istep+1:02d}_tile.npz",tile_coord=tile_coord)  # shape (n_tiles, 2): RA, Dec [deg]
+            np.savez_compressed(outputdir / f"hyper_step{istep+1:02d}_tile.npz",tile_coord=tile_coord)  # shape (n_tiles, 2): RA, Dec [deg]
     
         print("--"*20)
     
@@ -424,5 +427,5 @@ def hyperuniform_tiling(
         dectmp=90-np.rad2deg(thetatmp)
         print(f"writing tile final distribution files")
         tile_coord = np.column_stack((ratmp, dectmp))
-        np.savez_compressed(outputdir+f"hyper_final_tile.npz",tile_coord=tile_coord)  # shape (n_tiles, 2): RA, Dec [deg]
+        np.savez_compressed(outputdir / f"hyper_final_tile.npz",tile_coord=tile_coord)  # shape (n_tiles, 2): RA, Dec [deg]
     
