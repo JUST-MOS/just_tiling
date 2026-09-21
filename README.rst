@@ -26,7 +26,8 @@ First git clone the source codes
 We recommend to install the dependence first using conda, then install the just_tiling package
 
 .. code-block:: bash
-
+    conda activate YOUR_ENV
+    conda install -c conda-forge numpy scipy matplotlib astropy healpy cfitsio joblib
     conda env update -n YOUR_ENV -f environment.yml
     pip install -e .
 
@@ -68,14 +69,14 @@ expects the demo input file ``example/input/demo_4x4.npz``, so run it from
 .. code-block:: bash
 
     cd example
-    python test_optimize_tile_pos.py
+    python test_minimize_updf_tiling.py
 
 By default the script writes its outputs to ``./output/``. You can override
 this and other options from the command line:
 
 .. code-block:: bash
 
-    python test_optimize_tile_pos.py --odir ./my_output --n_jobs 4 --n_pix_jobs 2 --Npasses 3
+    python test_minimize_updf_tiling.py --odir ./my_output --n_jobs 4 --n_pix_jobs 2 --Npasses 3
 
 Available options:
 
