@@ -3,10 +3,6 @@
 # large outputs
 example/output
 
-# hyperuniform_tiling test data
-py/just_tiling/hyperuniform/testdata/*
-py/just_tiling/hyperuniform/testplot/*
-
 # Python packaging artifacts
 *.egg-info/
 build/
