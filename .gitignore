@@ -1,9 +1,7 @@
 
 
-
-# hyperuniform_tiling test data
-py/just_tiling/hyperuniform/testdata/*
-py/just_tiling/hyperuniform/testplot/*
+# large outputs
+example/output
 
 # Python packaging artifacts
 *.egg-info/
