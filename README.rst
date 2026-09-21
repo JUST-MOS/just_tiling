@@ -26,6 +26,7 @@ First git clone the source codes
 We recommend to install the dependence first using conda, then install the just_tiling package
 
 .. code-block:: bash
+
     conda activate YOUR_ENV
     conda install -c conda-forge numpy scipy matplotlib astropy healpy cfitsio joblib
     conda env update -n YOUR_ENV -f environment.yml
