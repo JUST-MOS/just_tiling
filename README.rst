@@ -41,19 +41,20 @@ Running the hyperuniform tiling example
 =======================================
 
 The hyperuniform tiling example is located at
-``example/test_hyperuniform_tiling.py``. 
+``example/test_hyperuniform_tiling.py``.
 
 .. code-block:: bash
 
     cd example
     python test_hyperuniform_tiling.py
 
-The script calls ``py/just_tiling/hyperuniform_tiling.py``, reads the galaxy catalog
-``./lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits`` and
-writes the initial, intermediate, and final tile distributions as ``.npz``
-files in ``./output``. Overwrite the default by ``-i`` or ``--input-catalog`` and ``-o`` or ``--output-dir`` plus your input file and your output directory.
+The script reads the galaxy catalog
+``./lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits``,
+which can be downloaded here: ``https://gravity.sjtu.edu.cn/file/api/public/dl/cfE2bdtW``.
 
-The sample galaxy catalog can be downloaded here: ``https://gravity.sjtu.edu.cn/file/api/public/dl/cfE2bdtW``
+The script mainly calls ``py/just_tiling/hyperuniform_tiling.py``, 
+and writes the initial, intermediate, and final tile distributions as ``.npz``
+files in ``./output``. Overwrite the default input/output by ``-i`` or ``--input-catalog`` and ``-o`` or ``--output-dir`` plus your input file and your output directory.
 
 Plots can be made by ``python plot_hyperuniform.py`` in the same directory. It reads the tile files in ``./output`` and output the plots in the same directory in default. Use ``-i`` or ``--input-dir`` and ``-o`` or ``--output-dir`` to overwrite.
 
