@@ -18,7 +18,7 @@ def parse_args():
         "-i",
         "--input-catalog",
         type = Path,
-        default = Path("/home/Survey/JUST/mini/junyumock/lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits"),
+        default = Path("./lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits"),
         help = "Path to the input FITS catalog.",
     )
 
@@ -27,7 +27,7 @@ def parse_args():
         "--output-dir",
         type = Path,
         default = Path("./output/"),
-        help="Output directory (default: ./output/).",
+        help="Output directory (default: ./).",
     )
 
 
