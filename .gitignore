@@ -2,6 +2,7 @@
 
 # large outputs
 example/output
+lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits
 
 # Python packaging artifacts
 *.egg-info/
