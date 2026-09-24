@@ -24,3 +24,6 @@ package-dir = {"" = "py"}
 [tool.setuptools.packages.find]
 where = ["py"]
 namespaces = true
+
+[tool.setuptools.package-data]
+"just_tiling.hyperuniform" = ["*.mplstyle"]
