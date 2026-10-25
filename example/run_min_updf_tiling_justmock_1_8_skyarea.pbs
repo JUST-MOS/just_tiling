@@ -1,0 +1,32 @@
+#!/bin/bash
+#PBS -N min_updf_tiling
+#PBS -q normal
+#PBS -m abe
+#PBS -l mem=64gb
+##PBS -q small
+#PBS -o ./stdout/${PBS_JOBNAME}.o${PBS_JOBID}
+#PBS -e ./stdout/${PBS_JOBNAME}.e${PBS_JOBID}
+#PBS -l nodes=1:ppn=64
+#PBS -l walltime=24:00:00
+
+# mkdir -p "stdout/" 
+
+cd "$PBS_O_WORKDIR" || exit 1
+echo "$(pwd)"
+
+
+source /home/zjding/installed_packages/miniforge3/etc/profile.d/conda.sh
+conda activate just_tile_env
+
+n_jobs=8
+n_pix_jobs=8
+
+echo "PBS_NP=${PBS_NP}"
+echo "n_jobs: ${n_jobs}"
+echo "n_pix_jobs: ${n_pix_jobs}"
+
+time python min_updf_tiling_justmock_1_8_skyarea.py \
+    --n_jobs ${n_jobs} \
+    --n_pix_jobs ${n_pix_jobs} \
+    --Npasses 3 \
+    --odir ./output/

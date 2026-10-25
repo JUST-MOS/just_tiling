@@ -5,6 +5,10 @@
 py/just_tiling/hyperuniform/testdata/*
 py/just_tiling/hyperuniform/testplot/*
 
+# Example run outputs
+example/stdout/
+example/output/.ipynb_checkpoints/
+
 # Python packaging artifacts
 *.egg-info/
 build/
