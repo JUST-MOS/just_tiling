@@ -1,0 +1,16 @@
+name: just_tiling
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python>=3.10
+  - numpy
+  - scipy
+  - matplotlib
+  - astropy
+  - healpy
+  - cfitsio
+  - joblib
+  - pip

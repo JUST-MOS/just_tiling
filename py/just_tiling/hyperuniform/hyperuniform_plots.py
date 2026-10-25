@@ -1,11 +1,30 @@
+"""
+This file contains functions for making plots
+
+> plot_gal_den_map
+   > input galaxy counts array and make plot
+
+> plot_tile_distribution
+   > input ra, dec of tiles, and plot tile position over a background map
+
+> plot_color_tile_distribution
+   > input ra, dec and color-coding of tiles, and plot tile over a background map
+
+> draw_sphercial_circles_advance
+   > function to draw a lot of circles, given the coordinates and circle radius 
+
+> plot_tile_circles
+   > input ra, dec of tiles, and draw cirlces over a background map
+
+"""
+
+from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import numpy as np
 import healpy as hp
 
 # better to use hyperuniform_plotstyle.mplstyle
-#plt.style.use("./hyperuniform_plotstyle.mplstyle")
-
 
 def plot_gal_den_map(
     counts_map_plot,
@@ -14,11 +33,15 @@ def plot_gal_den_map(
     rot = [30,30,0],
     half_sky = True,
     badcolor = (0,0,0,0.1),
-    savefile = "./testplot/galaxy_counts_map.pdf",
+    savefile = "./galaxy_counts_map.pdf",
     showfig = True,
     ):
 
-    with plt.style.context("./hyperuniform_plotstyle.mplstyle"):
+    STYLE_FILE = (
+        Path(__file__).resolve().parent
+        / "hyperuniform_plotstyle.mplstyle"
+        )
+    with plt.style.context(STYLE_FILE):
         hp.orthview(
             counts_map_plot, 
             title = "",
@@ -51,7 +74,7 @@ def plot_tile_distribution(
     bkgtext = "clusters",
     half_sky = True,
     badcolor = (0,0,0,0.1),
-    savefile = "./testplot/tile_distribution_with_background.pdf",
+    savefile = "./tile_distribution_with_background.pdf",
     showfig = True,
     tile_unit_deg = True,
     ):
@@ -64,7 +87,11 @@ def plot_tile_distribution(
         theta = 90 -dec
 
     from matplotlib.patches import Rectangle, Circle
-    with plt.style.context("./hyperuniform_plotstyle.mplstyle"):
+    STYLE_FILE = (
+        Path(__file__).resolve().parent
+        / "hyperuniform_plotstyle.mplstyle"
+        )
+    with plt.style.context(STYLE_FILE):
         hp.orthview(
             background_map, 
             title = "",
@@ -167,7 +194,7 @@ def plot_color_tile_distribution(
     rot = [30,30,0],
     half_sky = True,
     badcolor = (0,0,0,0.1),
-    savefile = "./testplot/tile_distribution_with_colors.pdf",
+    savefile = "./tile_distribution_with_colors.pdf",
     showfig = True,
     tile_unit_deg = True,
     ):
@@ -179,7 +206,11 @@ def plot_color_tile_distribution(
         phi = ra
         theta = 90 -dec
 
-    with plt.style.context("./hyperuniform_plotstyle.mplstyle"):
+    STYLE_FILE = (
+        Path(__file__).resolve().parent
+        / "hyperuniform_plotstyle.mplstyle"
+        )
+    with plt.style.context(STYLE_FILE):
         hp.orthview(
             mask_map,
             title = "",
@@ -297,7 +328,7 @@ def plot_tile_circles(
     bkgtext = "clusters",
     half_sky = True,
     badcolor = (0,0,0,0.1),
-    savefile = "./testplot/tile_circles_with_background.pdf",
+    savefile = "./tile_circles_with_background.pdf",
     showfig = True,
     tile_unit_deg = True,
     ):
@@ -312,7 +343,11 @@ def plot_tile_circles(
         theta = 90 -dec
 
     from matplotlib.patches import Rectangle, Circle
-    with plt.style.context("./hyperuniform_plotstyle.mplstyle"):
+    STYLE_FILE = (
+        Path(__file__).resolve().parent
+        / "hyperuniform_plotstyle.mplstyle"
+        )
+    with plt.style.context(STYLE_FILE):
         hp.orthview(
             background_map,
             title = "",

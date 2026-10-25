@@ -14,73 +14,48 @@ This repository is intended for the scheduling of tiles for JUST galaxy/galaxy c
 Installation
 ============
 
-The package requires Python 3.8 or later and is installable with ``pip``.
-For the fastest setup, install directly from GitHub:
+The package requires Python 3.10 or later.
+
+First git clone the source codes
 
 .. code-block:: bash
 
-    pip install git+https://github.com/zjdingastro/just_tiling.git
-
-Install from source
--------------------
-
-If you want to run the example scripts in place (they read data files from
-relative paths inside the repository), clone the repository and install it in
-editable mode:
-
-.. code-block:: bash
-
-    git clone https://github.com/zjdingastro/just_tiling.git
+    git clone https://github.com/JUST-MOS/just_tiling.git
     cd just_tiling
+
+We recommend to install the dependence first using conda, then install the just_tiling package
+
+.. code-block:: bash
+
+    conda activate YOUR_ENV
+    conda env update -n YOUR_ENV -f environment.yml
     pip install -e .
 
-Editable mode keeps the source files where they are, so the examples can be
-run directly from ``py/just_tiling/hyperuniform/`` and
-``py/just_tiling/minimize_updf/``.
-
-Install dependencies only
--------------------------
-
-If you prefer to run the scripts without installing the package itself, just
-install the runtime dependencies from ``requirements.txt``:
-
-.. code-block:: bash
-
-    pip install -r requirements.txt
-
-The dependencies include ``numpy``, ``matplotlib``, ``healpy``, ``astropy``,
-``scipy``, and ``joblib``.
 
 Troubleshooting
 ---------------
-
-``healpy`` and the compiled parts of ``numpy`` require pre-built wheels for
-your Python version and operating system. If ``pip`` tries to build them from
-source and fails, use a Python environment with available wheels (for
-example, a recent conda_ environment) or install the dependencies first with
-``pip install -r requirements.txt`` before installing ``just_tiling``.
-
-.. _conda: https://docs.conda.io/en/latest/
 
 
 Running the hyperuniform tiling example
 =======================================
 
 The hyperuniform tiling example is located at
-``py/just_tiling/hyperuniform/hyperuniform_tiling.py``. It uses hardcoded
-paths to read from and write to ``./testdata/`` in the same directory, so run
-it from ``py/just_tiling/hyperuniform/``:
+``example/test_hyperuniform_tiling.py``.
 
 .. code-block:: bash
 
-    cd py/just_tiling/hyperuniform
-    python hyperuniform_tiling.py
+    cd example
+    python test_hyperuniform_tiling.py
 
 The script reads the galaxy catalog
-``testdata/lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits`` and
-writes the initial, intermediate, and final tile distributions as ``.npy``
-files in ``testdata/``. Edit the ``catalogfile`` and ``outputdir`` variables
-at the top of the script to use different input or output paths.
+``./lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits``,
+which can be downloaded here: ``https://gravity.sjtu.edu.cn/file/api/public/dl/cfE2bdtW``.
+
+The script mainly calls ``py/just_tiling/hyperuniform_tiling.py``, 
+and writes the initial, intermediate, and final tile distributions as ``.npz``
+files in ``./output``. Overwrite the default input/output by ``-i`` or ``--input-catalog`` and ``-o`` or ``--output-dir`` plus your input file and your output directory.
+
+Plots can be made by ``python plot_hyperuniform.py`` in the same directory. It reads the tile files in ``./output`` and output the plots in the same directory in default. Use ``-i`` or ``--input-dir`` and ``-o`` or ``--output-dir`` to overwrite.
 
 
 Running the minimize updf example
@@ -95,14 +70,14 @@ expects the demo input file ``example/input/demo_4x4.npz``, so run it from
 .. code-block:: bash
 
     cd example
-    python test_optimize_tile_pos.py
+    python test_minimize_updf_tiling.py
 
 By default the script writes its outputs to ``./output/``. You can override
 this and other options from the command line:
 
 .. code-block:: bash
 
-    python test_optimize_tile_pos.py --odir ./my_output --n_jobs 4 --n_pix_jobs 2 --Npasses 3
+    python test_minimize_updf_tiling.py --odir ./my_output --n_jobs 4 --n_pix_jobs 2 --Npasses 3
 
 Available options:
 
