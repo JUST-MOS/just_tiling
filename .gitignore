@@ -4,6 +4,10 @@
 example/output
 lightcone_ra_0_90_dec_0_90_rmagcut20.5_cluster_mask.fits
 
+# Example run outputs
+example/stdout/
+example/output/.ipynb_checkpoints/
+
 # Python packaging artifacts
 *.egg-info/
 build/
